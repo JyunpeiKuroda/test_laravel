@@ -11,10 +11,10 @@ class Students_Table_Seeder extends Seeder
      */
     public function run()
     {
-          //fakerを使って、Studentsテーブルにデータを追加してみる。
+        //fakerを使って、Studentsテーブルに仮データを追加してみる。
         $faker = Faker\Factory::create('ja_jp');
         $now = \Carbon\Carbon::now();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 110; $i++) {
             $student = [
                 'name' => $faker->name,
                 'email' => $faker->email,

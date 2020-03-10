@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('student/list','StudentController@getIndex');
+// Route::get('/users/list','ComponentsController@user_list');
