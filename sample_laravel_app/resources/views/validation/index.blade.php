@@ -19,8 +19,8 @@
   <dl>
   <dt>名前：</dt>
   <dd>
-  <input type="text" name="username" />
-  @if($errors->has('username'))<br><span class="error">{{ $errors->first('username') }}</span> @endif
+  <input type="text" name="username" value="{{ old('username') }}"/>
+  @if($errors->has('username'))<br><span class="text-danger">{{ $errors->first('username') }}</span> @endif
   </dd>
   </dl>
 

@@ -20,20 +20,22 @@ Route::get('/', function () {
 // Route::get('student/list','StudentController@getIndex');
 // Route::get('/users/list','ComponentsController@user_list');
 
-// Route::group(['prefix' => 'student'], function () {
-//     Route::get('list', 'StudentController@getIndex'); //一覧
-//     Route::get('new', 'StudentController@new_index'); //入力
-//     Route::patch('new','StudentController@new_confirm'); //確認
-//     Route::post('new', 'StudentController@new_finish'); //完了
-// });
+Route::group(['prefix' => 'student'], function () {
+    Route::get('list', 'StudentController@getIndex'); //一覧
+    Route::get('new', 'StudentController@new_index'); //入力
+    Route::patch('new','StudentController@new_confirm'); //確認
+    Route::post('new', 'StudentController@new_finish'); //完了
+});
 
-# 入力画面
-Route::get('validation/', [
-    'uses' => 'ValiDemoController@getIndex',
-    'as' => 'validation.index'
-]);
-# 確認画面
-Route::post('validation/confirm', [
-    'uses' => 'ValiDemoController@confirm',
-    'as' => 'validation.confirm'
-]);
+Route::resource('/posts', 'PostController');     #投稿画面のpathのroute
+
+// # 入力画面
+// Route::get('validation/', [
+//     'uses' => 'ValiDemoController@getIndex',
+//     'as' => 'validation.index'
+// ]);
+// # 確認画面
+// Route::post('validation/confirm', [
+//     'uses' => 'ValiDemoController@confirm',
+//     'as' => 'validation.confirm'
+// ]);

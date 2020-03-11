@@ -10,7 +10,7 @@ class ValiDemoController extends Controller {
         return view('validation.index');
     }
 
-    public function confirm(Request $request) {
+    public function confirm(\App\Http\Requests\ValiDemoRequest $request) {
         // バリデーションのルールを作成
         $validateRules = [
             'username'=>'required',
@@ -31,6 +31,5 @@ class ValiDemoController extends Controller {
         $this->validate($request, $validateRules, $validateMessages);
         $data = $request->all();
         return view('validation.confirm')->with($data);
-
     }
 }
