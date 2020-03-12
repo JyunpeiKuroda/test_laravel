@@ -6,8 +6,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    //投稿画面(入力)
     public function index() {
         return view('posts.post_form');
+    }
+
+    public function create()
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
     }
 }

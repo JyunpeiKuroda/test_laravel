@@ -27,7 +27,19 @@ Route::group(['prefix' => 'student'], function () {
     Route::post('new', 'StudentController@new_finish'); //完了
 });
 
-Route::resource('/posts', 'PostController');     #投稿画面のpathのroute
+Route::resource('/posts', 'PostController', ['only' => ['index', 'create', 'destroy']]);     #投稿画面のpathのroute
+
+// Route::group(['prefix' => 'posts'], function () {
+//     Route::get('list', 'PostController@getIndex'); //一覧
+//     Route::get('new', 'StudentController@new_index'); //入力
+//     Route::patch('new','StudentController@new_confirm'); //確認
+//     Route::post('new', 'StudentController@new_finish'); //完了
+// });
+
+//画像updateのお試し用
+Route::get('/image_input', 'ImageController@getImageInput');
+Route::post('/image_confirm', 'ImageController@postImageConfirm');
+Route::post('/image_complete', 'ImageController@postImageComplete');
 
 // # 入力画面
 // Route::get('validation/', [
