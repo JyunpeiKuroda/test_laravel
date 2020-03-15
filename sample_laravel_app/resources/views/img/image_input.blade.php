@@ -1,7 +1,7 @@
 @extends('layouts.layout')
-@section('title', '登録')
+@section('title', '入力')
 @section('content')
-    <form action="image_confirm" method="post" enctype="multipart/form-data" id="form">
+    <form enctype="multipart/form-data" action="image_confirm" method="post" id="form">
         @csrf
         ファイル：
         <input type="file" name="imagefile" value=""/><br /><br />

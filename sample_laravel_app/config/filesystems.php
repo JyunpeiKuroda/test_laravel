@@ -43,6 +43,13 @@ return [
 
     'disks' => [
 
+        // 'ftp' => [
+        //     'driver'   => 'ftp',
+        //     'host'     => 'mysql',
+        //     'username' => 'user',
+        //     'password' => 'password',
+        // ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -53,6 +60,16 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+            // ===== permissions =====
+            'permissions' => [
+                'dir' => [
+                    'public'  => 0775 ,
+                ],
+                'file' => [
+                    'public' => 0664 ,
+                ],
+            ],
+            // ===== / permissions =====
         ],
 
         's3' => [

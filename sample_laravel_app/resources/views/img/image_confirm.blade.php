@@ -1,7 +1,7 @@
 @extends('layouts.layout')
-@section('title', 'Tutrial for beginner')
-@section('body')
-    <form action="image_complete" method="post">
+@section('title', '確認')
+@section('content')
+    <form  action="image_complete" method="post">
         @csrf
         <table border="1">
             <tr>
