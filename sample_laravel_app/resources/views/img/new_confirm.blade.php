@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('title', '確認')
 @section('content')
-    <form  action="image_complete" method="post">
+    <form  action="new_complete" method="post">
         @csrf
         <table border="1">
             <tr>
@@ -10,7 +10,7 @@
             </tr>
             <tr>
                 <td>商品名</td>
-                <td>{{ $data['product_name'] }}</td>
+                <td>{{ $data['product_content'] }}</td>
             </tr>
         </table>
         <input type="submit" name="action" value="送信" />
