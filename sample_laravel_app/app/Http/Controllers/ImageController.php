@@ -28,7 +28,7 @@ class ImageController extends Controller
     }
 
     // form(確認)
-    public function postNewConfirm(Request $request) {
+    public function getNewConfirm(Request $request) {
         // dd($request->all());
         //入力値の取得
         $post_data = $request->except('img_path');
