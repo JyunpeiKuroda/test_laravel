@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Storage;    //
+// use App\Http\Requests\ValiDemoRequest;
+use Storage;    // ファイルストレージを追加
 use App\Upimage;  //モデルのパスを追加
 
 class ImageController extends Controller
@@ -17,7 +18,7 @@ class ImageController extends Controller
 
     // 投稿一覧画面
     public function index() {
-        $upimages = Upimage::all();
+        // $pimages = Upimage::all();
         return view('img.image_index');
     }
 
@@ -28,10 +29,11 @@ class ImageController extends Controller
 
     // form(確認)
     public function postNewConfirm(Request $request) {
+        // dd($request->all());
         //入力値の取得
-        $post_data = $request->except('imagefile');
+        $post_data = $request->except('img_path');
         // exceptで[imagefile]以外("product_name"等)を$post_dataに格納。
-        $imagefile = $request->file('imagefile');
+        $imagefile = $request->file('img_path');
         // file()で引数に指定しているimagefileを$imagefileに格納。
 
         $temp_image_path = $imagefile->store('public/temp');
@@ -41,16 +43,6 @@ class ImageController extends Controller
         $product_content = $post_data['content'];
         // $post_dataから'product_name'を$product_nameに格納。
 
-        // $read_temp_path->save();
-        // $product_name->save();
-
-        // // db保存用
-        // $upimage = new Upimage();
-        // $upimage->content = $product_name;
-        // $upimage->imagefile = $read_temp_path;
-        // $upimage->save();
-
-
         // $data配列[key, value]
         $data = [
             'temp_image_path' => $temp_image_path,
@@ -58,24 +50,10 @@ class ImageController extends Controller
             'product_content' => $product_content,
         ];
 
-        // DB::insert('insert into users (id, ,read_temp_path,  name) values (?, ?)'
-        // , [1, 'Dayle'])
-
         // $requestにsession()->put()でkyeに'data'を指定してセッションに保存。
         $request->session()->put('data', $data);
         //ビューの表示
         //compact()でさっきsessionに保存したkyeのdataを保存。
-
-        // $this->validemo($request, Upimage::$rules);
-        $upimage = new Upimage;
-        $form = $request->all();
-        unset($form['_token']);
-
-        // dd($upimage);
-
-        // $upimage->fill($form)->save();
-        // return redirect('/person');
-
         return view('img.new_confirm', compact('data') );
     }
 
@@ -83,7 +61,6 @@ class ImageController extends Controller
     public function postNewComplete(Request $request) {
         //保存したセッションから取得し$dataに格納
         $data = $request->session()->get('data');
-
         // 取得した$dataの中の'temp_image_path'("public/temp/〜〜.jpeg")を格納
         $temp_image_path = $data['temp_image_path'];
         $prod_content = $data['product_content'];
@@ -101,6 +78,16 @@ class ImageController extends Controller
 
         //viewから画像を読み込むときのパスは、$prod_image_pathから'public/'を'storage/'に入れ替えた、storage/productimage/xxx.jpeg"
         $read_path = str_replace('public/', 'storage/', $prod_image_path);
+
+
+        // // db保存用
+        $upimage = new Upimage();
+        $upimage->img_path = $read_path;//$request->input('img_path');
+        // $upimage->img_path = $request->input('img_path');
+        // $upimage->content = $request->input('content');
+        $upimage->content = $prod_content;
+        $upimage->save();
+
 
         return view('img.new_complete', compact('read_path'));
     }

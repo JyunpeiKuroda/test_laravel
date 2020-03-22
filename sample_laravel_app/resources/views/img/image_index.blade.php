@@ -12,6 +12,7 @@
 {!! Form::submit('アップロードする') !!}
 {!! Form::close() !!} --}}
 
+<h2>投稿一覧画面(image_index)</h2>
 <hr color="#000000" style="height:1px;">
 
 {{-- @foreach ($photos ?? '' as $photo) --}}

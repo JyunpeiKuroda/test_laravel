@@ -14,5 +14,5 @@ class Upimage extends Model
     protected $table = 'upimages';
 
     // name, email, passwordカラムにデータの挿入を許可する
-    protected $fillable = ['img_path', 'content'];
+    protected $fillable = ['user_id', 'img_path', 'content'];
 }
