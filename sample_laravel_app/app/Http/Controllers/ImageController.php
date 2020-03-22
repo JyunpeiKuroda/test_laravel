@@ -79,15 +79,11 @@ class ImageController extends Controller
         //viewから画像を読み込むときのパスは、$prod_image_pathから'public/'を'storage/'に入れ替えた、storage/productimage/xxx.jpeg"
         $read_path = str_replace('public/', 'storage/', $prod_image_path);
 
-
         // // db保存用
         $upimage = new Upimage();
-        $upimage->img_path = $read_path;//$request->input('img_path');
-        // $upimage->img_path = $request->input('img_path');
-        // $upimage->content = $request->input('content');
+        $upimage->img_path = $read_path;
         $upimage->content = $prod_content;
         $upimage->save();
-
 
         return view('img.new_complete', compact('read_path'));
     }
