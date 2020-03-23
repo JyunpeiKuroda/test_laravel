@@ -18,8 +18,8 @@ class TopicController extends Controller
 
     // 投稿一覧画面
     public function index() {
-        // $pimages = Upimage::all();
-        return view('img.image_index');
+        $topic_all = Topic::orderBy('created_at', 'desc')->get();
+        return view('img.image_index', ['topic_all' => $topic_all]);
     }
 
     // form(入力)
