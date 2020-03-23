@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//画像updateのお試し用
 Route::get('/image_index', 'ImageController@index');  // 一覧画面
 
 Route::get('/new_input', 'ImageController@getNewInput');  // 入力

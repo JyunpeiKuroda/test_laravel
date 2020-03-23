@@ -29,12 +29,11 @@ class ImageController extends Controller
 
     // form(確認)
     public function getNewConfirm(Request $request) {
-        // dd($request->all());
         //入力値の取得
         $post_data = $request->except('img_path');
-        // exceptで[imagefile]以外("product_name"等)を$post_dataに格納。
+        // exceptで[img_path]以外を$post_dataに格納。('content'等)
         $imagefile = $request->file('img_path');
-        // file()で引数に指定しているimagefileを$imagefileに格納。
+        // file()で引数に指定しているimg_pathを$imagefileに格納。(new_inputで選んだイメージファイルのdata)
 
         $temp_image_path = $imagefile->store('public/temp');
         // $temp_image_pathに、"public/temp/〜〜.jpeg"を格納
@@ -52,6 +51,7 @@ class ImageController extends Controller
 
         // $requestにsession()->put()でkyeに'data'を指定してセッションに保存。
         $request->session()->put('data', $data);
+
         //ビューの表示
         //compact()でさっきsessionに保存したkyeのdataを保存。
         return view('img.new_confirm', compact('data') );
@@ -85,6 +85,7 @@ class ImageController extends Controller
         $upimage->content = $prod_content;
         $upimage->save();
 
+        //ビューの表示
         return view('img.new_complete', compact('read_path'));
     }
 }
