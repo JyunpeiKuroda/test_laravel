@@ -9,10 +9,10 @@
                 <td><img src="{{ $data['read_temp_path'] }}" width="200" height="130"></td>
             </tr>
             <tr>
-                <td>商品名</td>
+                <td>投稿Text</td>
                 <td>{{ $data['product_content'] }}</td>
             </tr>
         </table>
-        <input type="submit" name="action" value="送信" />
+        <input type="submit" name="action" value="投稿" />
     </form>
 @endsection

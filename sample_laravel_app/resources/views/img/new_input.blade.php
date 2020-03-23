@@ -3,7 +3,7 @@
 @section('content')
     <form enctype="multipart/form-data" action="new_confirm" method="post" id="form">
         @csrf
-        <label>ファイル:</label>
+        <label>画像:</label>
         <input type="file" name="img_path" value="{{ old('img_path') }}"/><br /><br />
 
         <label>投稿Text:</label><br />
