@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // use App\Http\Requests\ValiDemoRequest;
 use Storage;    // ファイルストレージを追加
-use App\Upimage;  //モデルのパスを追加
+use App\Topic;  //モデルのパスを追加
 
-class ImageController extends Controller
+class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -52,26 +52,23 @@ class ImageController extends Controller
         // $requestにsession()->put()でkyeに'data'を指定してセッションに保存。
         $request->session()->put('data', $data);
 
-        //ビューの表示
-        //compact()でさっきsessionに保存したkyeのdataを保存。
+        //ビューの表示 && compact()でさっきsessionに保存したkyeのdataを保存。
         return view('img.new_confirm', compact('data') );
     }
 
     // form(完了)
     public function postNewComplete(Request $request) {
-        //保存したセッションから取得し$dataに格納
-        $data = $request->session()->get('data');
-        // 取得した$dataの中の'temp_image_path'("public/temp/〜〜.jpeg")を格納
-        $temp_image_path = $data['temp_image_path'];
-        $prod_content = $data['product_content'];
+        //確認で保存したsession()からpull('data');で取り出し$inherit_dataに格納。同時にsessionのdataの削除。
+        $inherit_data = $request->session()->pull('data');
+
+        // 取得した$inherit_dataの中のtemp_image_path("public/temp/〜〜.jpeg")を格納
+        $temp_image_path = $inherit_data['temp_image_path'];
+        $prod_content = $inherit_data['product_content'];
 
         // $filenameは、$temp_image_pathの中のpathの'public/temp/'を除いて""空にして、〜〜.jpegのみ
         $filename = str_replace('public/temp/', '', $temp_image_path);
         //画像を保存する($prod_image_path)は、"public/productimage/xxx.jpeg"
         $prod_image_path = 'public/productimage/'.$filename;
-
-        // セッションをforget()で引数の'data'を消す
-        $request->session()->forget('data');
 
         //Storageファサードのmoveメソッドで、第一引数->第二引数へファイルを移動
         Storage::move($temp_image_path, $prod_image_path);
@@ -79,11 +76,11 @@ class ImageController extends Controller
         //viewから画像を読み込むときのパスは、$prod_image_pathから'public/'を'storage/'に入れ替えた、storage/productimage/xxx.jpeg"
         $read_path = str_replace('public/', 'storage/', $prod_image_path);
 
-        // // db保存用
-        $upimage = new Upimage();
-        $upimage->img_path = $read_path;
-        $upimage->content = $prod_content;
-        $upimage->save();
+        // db保存用
+        $topic = new Topic();
+        $topic->img_path = $read_path;
+        $topic->content = $prod_content;
+        $topic->save();
 
         //ビューの表示
         return view('img.new_complete', compact('read_path'));

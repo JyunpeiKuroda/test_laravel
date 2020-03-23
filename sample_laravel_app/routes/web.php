@@ -17,11 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/image_index', 'ImageController@index');  // 一覧画面
+Route::get('/image_index', 'TopicController@index');  // 一覧画面
 
-Route::get('/new_input', 'ImageController@getNewInput');  // 入力
-Route::post('/new_confirm', 'ImageController@getNewConfirm');  // 確認
-Route::post('/new_complete', 'ImageController@postNewComplete'); // 完了
+Route::get('/new_input', 'TopicController@getNewInput');  // 入力
+Route::post('/new_confirm', 'TopicController@getNewConfirm');  // 確認
+Route::post('/new_complete', 'TopicController@postNewComplete'); // 完了
 
 
 
