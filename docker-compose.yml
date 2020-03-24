@@ -32,6 +32,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+    command: --general-log=true --general-log-file=/dev/stdout
     ports:
       - "3306:3306"
     volumes:

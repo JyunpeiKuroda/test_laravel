@@ -18,8 +18,11 @@ class TopicController extends Controller
 
   // 投稿一覧画面
   public function index() {
-    $topic_all = Topic::orderBy('created_at', 'desc')->paginate(10);
-    return view('img.image_index', ['topic_all' => $topic_all]);
+    // $topic_all = Topic::all();
+    // return view('img.image_index', ['topic_all' => $topic_all]);
+    // \DB::connection_status()->enableQ
+    $topics_all = Topic::orderBy('created_at', 'desc')->simplePaginate(10);
+    return view('img.image_index', ['topics_all' => $topics_all]);
   }
 
   // form(入力)
