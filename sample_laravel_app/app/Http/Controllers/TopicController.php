@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // use App\Http\Requests\ValiDemoRequest;
+// use Illuminate\Support\Facades\DB;  //sqlクエリ確認？
 use Storage;    // ファイルストレージを追加
 use App\Topic;  //モデルのパスを追加
 
@@ -20,9 +21,21 @@ class TopicController extends Controller
   public function index() {
     // $topic_all = Topic::all();
     // return view('img.image_index', ['topic_all' => $topic_all]);
-    // \DB::connection_status()->enableQ
     $topics_all = Topic::orderBy('created_at', 'desc')->simplePaginate(10);
     return view('img.image_index', ['topics_all' => $topics_all]);
+  }
+
+  // 削除(投稿一覧画面)
+  public function destroy($topic_id) {
+    $topic = Topic::findOrFail($topic_id);
+
+    \DB::transaction(function () use ($topic) {
+      // $topic->comments()->delete();
+      // $topic->comments()->delete(); 投稿と紐づくコメントを削除する場合。
+      $topic->delete();
+    });
+
+    return redirect('img.image_index');
   }
 
   // form(入力)

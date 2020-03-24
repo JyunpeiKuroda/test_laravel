@@ -18,10 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/image_index', 'TopicController@index');  // 一覧画面
+Route::delete('/image_index{}', 'TopicController@destroy');  //(削除)一覧画面
 
-Route::get('/new_input', 'TopicController@getNewInput');  // 入力
-Route::post('/new_confirm', 'TopicController@getNewConfirm');  // 確認
-Route::post('/new_complete', 'TopicController@postNewComplete'); // 完了
+Route::get('/new_input', 'TopicController@getNewInput');  // 入力(投稿form)
+Route::post('/new_confirm', 'TopicController@getNewConfirm');  // 確認(投稿form)
+Route::post('/new_complete', 'TopicController@postNewComplete'); // 完了(投稿form)
 
 
 

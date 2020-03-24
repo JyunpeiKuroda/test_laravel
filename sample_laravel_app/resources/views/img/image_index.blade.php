@@ -17,6 +17,14 @@
                             <div class="card-title">
                                 <p>user名(◯◯◯◯◯◯◯)</p>
                             </div>
+
+                            {{-- <form style="display: inline-block;" method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger">削除する</button>
+                            </form> --}}
+
+
                             <div class="card-delete-button">
                                 <button>
                                     <a href="#" class="card-delete">投稿を削除</a>
