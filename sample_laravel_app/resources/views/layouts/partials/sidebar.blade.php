@@ -1,4 +1,4 @@
-<!-- side bar -->
+{{-- <!-- side bar -->
 <div class="panel panel-default">
   <div class="panel-heading">
   Menu
@@ -11,4 +11,4 @@
   <li><a href=""><i class="glyphicon glyphicon-menu-right"></i> submenu4</a></li>
   </ul>
   <!-- </div> -->
-</div>
+</div> --}}
