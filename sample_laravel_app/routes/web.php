@@ -17,29 +17,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/image_index', 'TopicController@index');  // 一覧画面
-Route::delete('/image_index{}', 'TopicController@destroy');  //(削除)一覧画面
+Route::get('/image_index', 'TopicsController@index');  // 一覧画面
+Route::delete('/image_index/delete/{topic_id}', 'TopicsController@delete');  //(削除)一覧画面
+// Route::post('delete/{id}/', 'StudentController@us_delete'); //削除
 
-Route::get('/new_input', 'TopicController@getNewInput');  // 入力(投稿form)
-Route::post('/new_confirm', 'TopicController@getNewConfirm');  // 確認(投稿form)
-Route::post('/new_complete', 'TopicController@postNewComplete'); // 完了(投稿form)
+Route::get('/new_input', 'TopicsController@getNewInput');  // 入力(投稿form)
+Route::post('/new_confirm', 'TopicsController@getNewConfirm');  // 確認(投稿form)
+Route::post('/new_complete', 'TopicsController@postNewComplete'); // 完了(投稿form)
 
 
 
 // RESTfulサービスのルーティング
-Route::resource('/post', 'PostController')->middleware('auth');;
+// Route::resource('/post', 'PostController')->middleware('auth');;
 
-Route::get('users','UsersController@index');
+// Route::get('users','UsersController@index');
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

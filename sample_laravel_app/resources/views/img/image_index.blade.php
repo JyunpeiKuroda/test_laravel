@@ -18,18 +18,25 @@
                                 <p>user名(◯◯◯◯◯◯◯)</p>
                             </div>
 
-                            {{-- <form style="display: inline-block;" method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
+                            {{-- <form style="display: inline-block;" method="POST" action="{{ route('topics.destroy', ['topics_all' => $topics_all]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger">削除する</button>
                             </form> --}}
 
-
+                            <!-- 削除ボタン -->
                             <div class="card-delete-button">
-                                <button>
-                                    <a href="#" class="card-delete">投稿を削除</a>
-                                </button>
+                                <form
+                                    style="display: inline-block;"
+                                    method="post"
+                                    action="/image_index/delete/{{$topic_all->topic_id}}">
+                                    {{-- action="{{ route('Topics.delete') }}" --}}
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="削除" class="btn btn-danger btn-sm" onclick='return confirm("本当に削除しますか？");'>
+                                </form>
                             </div>
+
                             <br>
                             <div class="card-body">
                                 <div class="card-min-img">

@@ -12,7 +12,7 @@ class Topic extends Model
      * @var string
      */
     protected $table = 'topics';
-
+    protected $primaryKey = 'topic_id';
     // name, email, passwordカラムにデータの挿入を許可する
-    protected $fillable = ['user_id', 'img_path', 'content'];
+    protected $fillable = ['topic_id', 'user_id', 'img_path', 'content'];
 }

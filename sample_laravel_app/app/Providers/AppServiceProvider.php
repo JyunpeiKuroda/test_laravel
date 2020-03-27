@@ -27,10 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         DB::listen(function ($query) {
-            // $query->sql;
-            // $query->bindings;
-            // $query->time;
-
+            //  sample_laravel_app/storage/logs/laravel.logに出力されるログを見れるように!!!!!
             $sql = $query->sql;
             for ($i = 0; $i < count($query->bindings); $i++) {
                 $sql = preg_replace("/\?/", $query->bindings[$i], $sql, 1);
