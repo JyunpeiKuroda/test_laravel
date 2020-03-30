@@ -3,5 +3,7 @@
 @section('content')
   <p>投稿が完了しました</p>
   <img src="{{ $read_path }}" width="300" height="200">
-  <a link href="/image_index">一覧画面に戻る</a>
+  <button>
+    <a link href="/image_index">一覧画面に戻る</a>
+  </button>
 @endsection

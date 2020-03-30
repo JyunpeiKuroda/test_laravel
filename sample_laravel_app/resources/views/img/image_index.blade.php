@@ -1,13 +1,6 @@
 @extends('layouts.layout')
 @section('title', '一覧画面')
 @section('content')
-
-    <!-- 現在のタスク -->
-    {{-- @if (count($topic_all) > 0)
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                投稿一覧画面
-            </div> --}}
     <div class="panel-panel-default">
         @foreach ($topics_all as $topic_all)
             <div class="panel-body">
@@ -17,13 +10,6 @@
                             <div class="card-title">
                                 <p>user名(◯◯◯◯◯◯◯)</p>
                             </div>
-
-                            {{-- <form style="display: inline-block;" method="POST" action="{{ route('topics.destroy', ['topics_all' => $topics_all]) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">削除する</button>
-                            </form> --}}
-
                             <!-- 削除ボタン -->
                             <div class="card-delete-button">
                                 <form
@@ -64,20 +50,4 @@
     <div class="d-flex justify-content-center">
         {!! $topics_all->links() !!}
     </div>
-        {{-- </div>
-    @endif --}}
 @endsection
-
-
-
-
-
-
-
-
-        {{-- <!-- 画像 -->
-        <img src="{{$topic_all->img_path}}" width="400" height="300">
-        <!-- 投稿内容 -->
-        <div>{{$topic_all->content}}</div>
-        <!-- 投稿作成時間 -->
-        <div>{{$topic_all->created_at}}</div> --}}

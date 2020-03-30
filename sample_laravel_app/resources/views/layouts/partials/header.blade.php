@@ -9,7 +9,7 @@
   <span class="icon-bar"></span>
   </button>
   <a class="navbar-brand" href="#">
-  <img alt="Laravel学習帳" src="/img/logo.png" style="height: 20px;">
+  <img alt="Larastagram" style="height: 20px;">
   </a>
   </div>
 

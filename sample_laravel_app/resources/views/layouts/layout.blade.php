@@ -14,11 +14,6 @@
 
 <div class="container">
   <div class="row" id="content">
-  <div class="col-md-3">
-  <!-- サイドバー -->
-  @include('layouts.partials.sidebar')
-  </div>
-  <div class="col-md-9">
   <!-- コンテンツ -->
   @yield('content')
   </div>
